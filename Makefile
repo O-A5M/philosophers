@@ -8,13 +8,13 @@ THREAD_FLAG = -pthread
 
 NAME = philo
 SRC = philo/philo.c
-OBJ = $(SRC:.o=.c)
+OBJ = $(SRC:.c=.o)
 
 # philo_bonus's variables
 
 NAME_B = philo_bonus
 SRC_B = philo_bonus/philo_bonus.c
-OBJ_B = $(SRC_B:.o=.c)
+OBJ_B = $(SRC_B:.c=.o)
 
 # libft's variables
 
