@@ -6,13 +6,15 @@ THREAD_FLAG = -pthread
 
 # philo's variables
 
-NAME = philo
+DIR = philo
+NAME = $(DIR)/philo
 SRC = philo/philo.c
 OBJ = $(SRC:.c=.o)
 
 # philo_bonus's variables
 
-NAME_B = philo_bonus
+DIR_B = philo_bonus
+NAME_B = $(DIR_B)/philo_bonus
 SRC_B = philo_bonus/philo_bonus.c
 OBJ_B = $(SRC_B:.c=.o)
 
@@ -30,12 +32,12 @@ PRINTF = $(PRINTF_D)/$(PRINTF_N)
 
 # the rules
 
-all: $(LIBFT_N) $(PRINTF_N) $(NAME)
+all: $(LIBFT) $(PRINTF) $(NAME)
 
-bonus: $(LIBFT_N) $(PRINTF_N) $(NAME_B)
+bonus: $(LIBFT) $(PRINTF) $(NAME_B)
 
 $(NAME): $(OBJ)
-	$(cc) $(CFLAGS) $(THREAD_FLAG) $(OBJ) -o $(NAME)
+	$(CC) $(CFLAGS) $(THREAD_FLAG) $(PRINTF) $(LIBFT) $(OBJ) -o $(NAME)
 
 $(LIBFT_N):
 	$(MAKE) -C $(LIBFT_D) all
@@ -59,4 +61,4 @@ fclean: clean
 re: fclean all
 
 .PHONY: clean
-.SECONDARY: $(OBJ) $(OBJ_B)
+.SECONDARY: $(OBJ) $(OBJ_B) $(LIBFT) $(PRINTF)
