@@ -8,15 +8,9 @@ BONUS_SRC = ft_lstnew_bonus.c ft_lstadd_front_bonus.c ft_lstsize_bonus.c ft_lstl
 BONUS_OBJ = $(BONUS_SRC:.c=.o)
 NAME = libft.a
 
-# ft_printf variables:
+# the rules
 
-PRINTF_D = ft_printf
-PRINTF_N = libftprintf.a
-
-all: $(PRINTF_N) $(NAME)
-
-$(PRINTF_N):
-	$(MAKE) -C $(PRINTF_D) all
+all: $(NAME)
 
 $(NAME): $(OBJS)
 	ar rcs $(NAME) $(OBJS)
@@ -28,14 +22,12 @@ bonus: $(BONUS_OBJ) $(OBJS)
 	ar rcs $(NAME) $(OBJS) $(BONUS_OBJ)
 
 clean:
-	$(MAKE) -C $(PRINTF_D) clean
 	rm -rf $(OBJS) $(BONUS_OBJ)
 
 fclean: clean
-	$(MAKE) -C $(PRINTF_D) fclean
 	rm -rf $(NAME)
 
 re: fclean all
 
-.PHONY: all clean fclean re bonus
+.PHONY: clean
 .SECONDARY: $(OBJS) $(BONUS_OBJ)
