@@ -16,5 +16,6 @@ typedef struct	s_philo
 }				t_philo;
 
 int	ft_atoi(const char *nptr);
+int	check_input(t_philo *philo, int ac, char **av);
 
 #endif

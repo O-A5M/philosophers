@@ -1,6 +1,6 @@
 # include "philo.h"
 
-int	num_check(char *s)
+static int	num_check(char *s)
 {
 	int	i;
 
@@ -14,7 +14,7 @@ int	num_check(char *s)
 	return (1);
 }
 
-void	fill_struct(t_philo *philo, int value, int order)
+static void	fill_struct(t_philo *philo, int value, int order)
 {
 	if (order == 0)
 		philo->num_of_philo = value;
@@ -40,6 +40,11 @@ int	check_input(t_philo *philo, int ac, char **av)
 		if (num_check(av[i]))
 		{
 			fill_struct(philo, ft_atoi(av[i]), num);
+			num++;
 		}
+		else
+			return (0);
+		i++;
 	}
+	return (1);
 }

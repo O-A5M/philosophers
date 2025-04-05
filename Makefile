@@ -8,7 +8,7 @@ THREAD_FLAG = -pthread
 
 DIR = philo
 NAME = $(DIR)/philo
-SRC = philo/philo.c
+SRC = philo/philo.c philo/philo_parcing.c philo/ft_atoi.c
 OBJ = $(SRC:.c=.o)
 
 # philo_bonus's variables
