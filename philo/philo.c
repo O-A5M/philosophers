@@ -6,14 +6,11 @@ int	main(int ac, char **av)
 
 	if (ac == 5 || ac == 6)
 	{
-		if (check_input(&philo, ac, av))
+		if (!check_input(&philo, ac, av))
+			return (1);
+		else
 		{
-			printf("%d\n", philo.num_of_philo);
-			printf("%d\n", philo.time_to_die);
-			printf("%d\n", philo.time_to_eat);
-			printf("%d\n", philo.time_to_sleep);
-			if (ac == 6)
-				printf("%d\n", philo.num_of_eats);
+			create_philos();
 		}
 	}
 	else
