@@ -2,7 +2,8 @@
 
 int	main(int ac, char **av)
 {
-	t_philo	philo;
+	t_philo		philo;
+	pthread_t	*philo_thread;
 
 	if (ac == 5 || ac == 6)
 	{
