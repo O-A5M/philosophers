@@ -11,7 +11,11 @@ void	philo_sleep(int sleep_duration)
 	printf("%d\n", start_time.tv_usec/1000);
 }
 
-int	main()
+void	philo_eat(int eat_time)
 {
-	philo_sleep(100);
+	struct timeval	start_time;
+
+	gettimeofday(start_time, NULL);
+	usleep(eat_time);
+	printf("%d/n", start_time.tv_usec/1000);
 }
