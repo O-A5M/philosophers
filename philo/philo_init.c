@@ -15,8 +15,16 @@ int	create_philos(t_philo *philo, pthread_t philo_thread)
 	i = 0;
 	while (i < philo->num_of_philo)
 	{
-		if((pthread_create(&thread[i], NULL, philos_work, philo) != 0)
-				exit(1);
+		if(pthread_create(&thread[i], NULL, philos_work, philo) != 0)
+			return (1);
 		i++;
 	}
+	i = 0;
+	while (i < philo->num_of_philo)
+	{
+		if (pthread_join(thread[i], NULL) != 0)
+			return (1);
+		i++;
+	}
+	return (0);
 }

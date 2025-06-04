@@ -1,6 +1,4 @@
 #include "philo.h"
-#include <bits/types/struct_timeval.h>
-#include <sys/time.h>
 
 void	philo_sleep(int sleep_duration)
 {

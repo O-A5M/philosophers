@@ -21,9 +21,9 @@ static int	ft_isdigit(int c)
 
 int	ft_atoi(const char *nptr)
 {
-	int	i;
-	int	sign;
-	int	ret;
+	int			i;
+	int			sign;
+	long int	ret;
 
 	i = 0;
 	sign = 1;
