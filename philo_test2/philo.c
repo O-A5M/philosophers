@@ -64,19 +64,13 @@ void	*philo_routine(void *input)
 	id = philo->id;
 	left = (id + 1) % philo->global->input.number_of_philos;
 	right = id;
+	if (philo->id % 2 != 0)
+		philo_sleep(philo->global, philo->global->input.time_to_eat);
 	while (!philo->global->is_he_dead)
 	{
 		printf("[%lu] - philo[%lu] is thinking\n", timestamp(philo->global), id);
-		if (right > left)
-		{
-			pthread_mutex_lock(&philo->global->fork[right]);
-			pthread_mutex_lock(&philo->global->fork[left]);
-		}
-		else
-		{
-			pthread_mutex_lock(&philo->global->fork[left]);
-			pthread_mutex_lock(&philo->global->fork[right]);
-		}
+		pthread_mutex_lock(&philo->global->fork[right]);
+		pthread_mutex_lock(&philo->global->fork[left]);
 		philo->last_meal = timestamp(philo->global);
 		printf("[%lu] - philo[%lu] is eating\n", timestamp(philo->global), id);
 		philo_sleep(philo->global, philo->global->input.time_to_eat);
@@ -90,10 +84,10 @@ void	*philo_routine(void *input)
 
 void	init_var(t_global *global)
 {
-	global->input.number_of_philos = 9;
+	global->input.number_of_philos = 3;
 	global->input.time_to_sleep = 30;
 	global->input.time_to_eat = 30;
-	global->input.time_to_die = 240;
+	global->input.time_to_die = 63;
 	global->input.number_of_meals = 0;
 }
 
