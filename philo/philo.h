@@ -1,35 +1,37 @@
 #ifndef PHILO_H
 # define PHILO_H
 # include <pthread.h>
-# include <unistd.h>
 # include <stdio.h>
-# include <string.h>
-# include <stdlib.h>
+# include <unistd.h>
 # include <sys/time.h>
-# include <stddef.h>
-# include <limits.h>
 
 typedef struct	s_input
 {
-	int	num_of_philo;
-	int	time_to_eat;
-	int	time_to_sleep;
+	int	number_of_philo;
 	int	time_to_die;
-	int	num_of_eats;
+	int	time_to_sleep;
+	int	time_to_eat;
+	int	number_of_meals;
 }				t_input;
 
-// typedef struct	s_fork
-// {
-// }				t_fork;
+typedef struct	s_philo
+{
+	long			last_meal;
+	int				id;
+	pthread_t		thread;
+	struct s_global	*global;
+}				t_philo;
 
-// typedef struct	s_philos
-// {
-// 	pthread_t	philo_id;
-// 	t_fork		*left_fork;
-// 	t_fork		*right_fork;
-// }				t_philos;
+typedef struct	s_global
+{
+	t_input			input;
+	t_philo			*philo;
+	pthread_mutex_t	*fork;
+	pthread_mutex_t	end_of_simulation;
+}				t_global;
 
-int	ft_atoi(const char *nptr);
-int	check_input(t_philo *philo, int ac, char **av);
+void	error_message(void);
+int		input_parser(int ac, char **av, t_global *global);
+void	start_simulation(t_global *global);
 
 #endif

@@ -2,27 +2,24 @@
 
 int	main(int ac, char **av)
 {
-	t_input		input;
-	pthread_t	*philo_thread;
+	t_global	global;
 
 	if (ac == 5 || ac == 6)
 	{
-		//check for errors
-		//and store the input
-		check_input(&input, ac, av);
-		//creating threads and mutexes
-		//and allocating memory for them 
-		philos_init(); // TODO
-		//Start of the simulation
-		start_sim(); // TODO
-		//Cleaning in case of:
-		//errors.
-		//end simulation.
-		//philo dies.
-		clean(); // TODO
+		if (!input_parser(ac , av , &global))
+		{
+			start_simulation(&global);
+		}
+		else
+		{
+			error_message();
+			return (1);
+		}
 	}
 	else
 	{
-		error_message(); // TODO
+		error_message();
+		return (1);
 	}
+	return (0);
 }
