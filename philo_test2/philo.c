@@ -127,8 +127,6 @@ int	main()
 	i = 0;
 	global.is_he_dead = 0;
 	init_var(&global);
-//	parcing_input(&global.input); //TODO
-	// mutex initialisation
 	global.fork = malloc(sizeof(pthread_mutex_t) * global.input.number_of_philos);
 	global.philo = malloc(sizeof(t_philo) * global.input.number_of_philos);
 	while (i < global.input.number_of_philos)
@@ -137,7 +135,6 @@ int	main()
 		i++;
 	}
 	i = 0;
-	// philos initialisation
 	while (i < global.input.number_of_philos)
 	{
 		global.philo[i].id = i;

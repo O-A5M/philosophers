@@ -1,4 +1,4 @@
-#include "philo.h"
+#include "../header/philo.h"
 
 int	main(int ac, char **av)
 {
