@@ -6,8 +6,8 @@ long	timestamp(t_global *global)
 	long			ret;
 
 	gettimeofday(&start_time, NULL);
-	ret = (global->start_sim.tv_sec - start_time.tv_sec) * 1000
-			+ (global->start_sim.tv_usec - start_time.tv_usec) / 1000;
+	ret = (start_time.tv_sec - global->start_sim.tv_sec) * 1000
+			+ (start_time.tv_usec - global->start_sim.tv_usec) / 1000;
 	return (ret);
 }
 
