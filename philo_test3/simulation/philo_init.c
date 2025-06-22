@@ -1,4 +1,5 @@
 #include "../header/philo.h"
+#include <pthread.h>
 
 static void	init_meal(t_global *global)
 {
@@ -8,7 +9,9 @@ static void	init_meal(t_global *global)
 	global->is_dead.is_dead = 0;
 	while (index < global->input.number_of_philo)
 	{
-		global->philo[index].last_meal = 0;
+		pthread_mutex_lock(&global->philo[index].last_meal.meal_mutex);
+		global->philo[index].last_meal.last_meal = timestamp(global);
+		pthread_mutex_unlock(&global->philo[index].last_meal.meal_mutex);
 		index++;
 	}
 }
@@ -21,6 +24,9 @@ int	create_philos(t_global *global)
 	global->philo = malloc(sizeof(t_philo) * global->input.number_of_philo);
 	if (!global->philo)
 		return (1);
+	while (index < global->input.number_of_philo)
+		pthread_mutex_init(&global->philo[index++].last_meal.meal_mutex, NULL);
+	index = 0;
 	init_meal(global);
 	global->fork = malloc(sizeof(pthread_mutex_t) * global->input.number_of_philo);
 	if (!global->fork)
@@ -53,6 +59,12 @@ void	start_simulation(t_global *global)
 	while (index < global->input.number_of_philo)
 	{
 		pthread_join(global->philo[index].thread, NULL);
+		index++;
+	}
+	index = 0;
+	while (index < global->input.number_of_philo)
+	{
+		pthread_mutex_destroy(&global->philo[index].last_meal.meal_mutex);
 		index++;
 	}
 	index = 0;

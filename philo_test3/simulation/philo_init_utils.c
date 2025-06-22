@@ -16,6 +16,6 @@ void	ft_sleep(long time, t_global *global)
 	long	start;
 
 	start = timestamp(global);
-	while (!global->is_dead.is_dead && timestamp(global) - start < time)
+	while (!read_death(global) && timestamp(global) - start < time)
 		usleep(100);
 }

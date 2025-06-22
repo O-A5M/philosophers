@@ -8,8 +8,7 @@ THREAD_FLAG = -pthread
 
 DIR = philo
 NAME = $(DIR)/philo
-SRC = philo/main/philo.c philo/main/philo_utils.c philo/parsing/philo_parsing.c philo/parsing/philo_parsing_utils.c \
-	  philo/simulation/philo_init.c philo/simulation/philo_init_utils.c philo/simulation/philo_routine.c
+SRC = philo/main/philo.c philo/parsing/philo_parsing.c philo/simulation/philo_simulation.c philo/simulation/philo_simulation_routine.c
 OBJ = $(SRC:.c=.o)
 
 # the rules

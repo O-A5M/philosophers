@@ -15,6 +15,12 @@ typedef struct	s_death
 	int				is_dead;
 }				t_death;
 
+typedef struct	s_last_meal
+{
+	pthread_mutex_t	meal_mutex;
+	long			last_meal;
+}				t_last_meal;
+
 typedef struct	s_input
 {
 	int	number_of_philo;
@@ -26,7 +32,7 @@ typedef struct	s_input
 
 typedef struct	s_philo
 {
-	long			last_meal;
+	t_last_meal		last_meal;
 	int				id;
 	pthread_t		thread;
 	struct s_global	*global;
@@ -52,5 +58,7 @@ int		create_philos(t_global *global);
 long	timestamp(t_global *global);
 void	*death_checker(void *input);
 void	ft_sleep(long time, t_global *global);
+int		read_death(t_global *global);
+long	last_meal(t_global *global, int i, int flag);
 
 #endif
