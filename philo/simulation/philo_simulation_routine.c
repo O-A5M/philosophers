@@ -102,10 +102,11 @@ void	*death_tracker(void *input)
 				global->death.death_flag = 1;
 				pthread_mutex_unlock(&global->death.death_protect);
 				printf("%ld %d is dead\n", timestamps(global), i);
+				return (NULL);
 			}
 			i++;
 		}
-		usleep(1000);
+		usleep(100);
 	}
 	return (NULL);
 }
