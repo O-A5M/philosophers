@@ -45,6 +45,7 @@ typedef struct	s_death
 typedef struct	s_global
 {
 	pthread_mutex_t	*forks;
+	pthread_mutex_t	ft_print;
 	t_death			death;
 	t_input			input;
 	t_philo			*philo;
@@ -58,5 +59,8 @@ void	*philo_routine(void *input);
 void	*death_tracker(void *input);
 long	timestamps(t_global *global);
 void	smart_sleep(t_global *global, long sleeping_time);
+void	ft_print(t_philo *philo, char *message);
+int		read_death(t_death death);
+long	last_meal(t_global *global, int id, int flag);
 
 #endif

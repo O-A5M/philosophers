@@ -1,4 +1,5 @@
 #include "../include/philo.h"
+#include <pthread.h>
 
 static void	init_data(t_global *global, t_philo *philo, t_input input)
 {
@@ -8,6 +9,7 @@ static void	init_data(t_global *global, t_philo *philo, t_input input)
 	global->philo = philo;
 	gettimeofday(&global->start_time, NULL);
 	pthread_mutex_init(&global->death.death_protect, NULL);
+	pthread_mutex_init(&global->ft_print, NULL);
 	pthread_mutex_lock(&global->death.death_protect);
 	global->death.death_flag = 0;
 	pthread_mutex_unlock(&global->death.death_protect);
@@ -63,5 +65,6 @@ void	start_simulation(t_input input)
 	while (index < input.number_of_philo)
 		pthread_mutex_destroy(&philo[index++].last_meal.meal_protect);
 	pthread_mutex_destroy(&global.death.death_protect);
+	pthread_mutex_destroy(&global.ft_print);
 	free (global.forks);
 }

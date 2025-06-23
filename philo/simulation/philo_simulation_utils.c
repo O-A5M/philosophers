@@ -51,3 +51,12 @@ void	smart_sleep(t_global *global, long sleeping_time)
 		usleep(100);
 }
 
+void	ft_print(t_philo *philo, char *message)
+{
+	if (!read_death(philo->global->death))
+	{
+		pthread_mutex_lock(&philo->global->ft_print);
+		printf("%ld %d %s\n", timestamps(philo->global), philo->id, message);
+		pthread_mutex_unlock(&philo->global->ft_print);
+	}
+}
