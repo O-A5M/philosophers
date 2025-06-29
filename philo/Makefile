@@ -1,30 +1,20 @@
 NAME	= philo
-CC		= gcc
+CC	= gcc
 CFLAGS	= -Werror -Wall -Wextra -pthread
-
-# MODE	= none
-# ifeq ($(MODE), pretty)
-# 	CFLAGS	+= -D DEBUG_FORMATTING=1
-# endif
-# ifeq ($(MODE), debug)
-# 	CFLAGS	+= -D DEBUG_FORMATTING=1 -fsanitize=thread -g
-# endif
 
 SRC_PATH = sources/
 OBJ_PATH = objects/
 
-SRC		= philo_main.c philo_parsing.c philo_grim_reaper.c philo_time.c philo_philosopher.c philo_init.c philo_output.c philo_exit.c
+SRC	= philo_main.c philo_parsing.c philo_grim_reaper.c philo_time.c philo_philosopher.c philo_init.c philo_output.c philo_exit.c
 SRCS	= $(addprefix $(SRC_PATH), $(SRC))
-OBJ		= $(SRC:.c=.o)
+OBJ	= $(SRC:.c=.o)
 OBJS	= $(addprefix $(OBJ_PATH), $(OBJ))
-
-INC		= -I ./includes/
 
 all: $(NAME)
 
 $(OBJ_PATH)%.o: $(SRC_PATH)%.c
 	@mkdir -p $(OBJ_PATH)
-	$(CC) $(CFLAGS) -c $< -o $@ $(INC)
+	$(CC) $(CFLAGS) -c $< -o $@
 
 $(NAME): $(OBJS)
 	$(CC) $(CFLAGS) $(OBJS) -o $@

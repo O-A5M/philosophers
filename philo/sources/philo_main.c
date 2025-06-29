@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   philo_main.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: oakhmouc <oakhmouc@student.1337.ma>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/06/29 11:45:40 by oakhmouc          #+#    #+#             */
+/*   Updated: 2025/06/29 11:50:48 by oakhmouc         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/philo.h"
 
 static bool	start_simulation(t_table *table)
@@ -34,8 +46,6 @@ static void	stop_simulation(t_table	*table)
 	}
 	if (table->nb_philos > 1)
 		pthread_join(table->grim_reaper, NULL);
-	// if (DEBUG_FORMATTING == true && table->must_eat_count != -1)
-	// 	write_outcome(table);
 	destroy_mutexes(table);
 	free_table(table);
 }

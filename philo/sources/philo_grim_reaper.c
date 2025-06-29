@@ -1,9 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   philo_grim_reaper.c                                :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: oakhmouc <oakhmouc@student.1337.ma>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/06/29 11:41:18 by oakhmouc          #+#    #+#             */
+/*   Updated: 2025/06/29 11:51:33 by oakhmouc         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/philo.h"
 
 static void	set_sim_stop_flag(t_table *table, bool state)
 {
 	pthread_mutex_lock(&table->sim_stop_lock);
-		table->sim_stop = state;
+	table->sim_stop = state;
 	pthread_mutex_unlock(&table->sim_stop_lock);
 }
 

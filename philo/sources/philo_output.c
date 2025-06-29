@@ -1,37 +1,16 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   philo_output.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: oakhmouc <oakhmouc@student.1337.ma>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/06/29 11:45:57 by oakhmouc          #+#    #+#             */
+/*   Updated: 2025/06/29 11:52:07 by oakhmouc         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/philo.h"
-
-// static void	print_status_debug(t_philo *philo, char *color,
-// 								char *str, t_status status)
-// {
-// 	if (status == GOT_FORK_1)
-// 		printf("[%10ld]\t%s%03d\t%s\e[0m: fork [%d]\n",
-// 			get_time_in_ms() - philo->table->start_time,
-// 			color, philo->id + 1, str, philo->fork[0]);
-// 	else if (status == GOT_FORK_2)
-// 		printf("[%10ld]\t%s%03d\t%s\e[0m: fork [%d]\n",
-// 			get_time_in_ms() - philo->table->start_time,
-// 			color, philo->id + 1, str, philo->fork[1]);
-// 	else
-// 		printf("[%10ld]\t%s%03d\t%s\e[0m\n",
-// 			get_time_in_ms() - philo->table->start_time,
-// 			color, philo->id + 1, str);
-// }
-
-// static void	write_status_debug(t_philo *philo, t_status status)
-// {
-// 	if (status == DIED)
-// 		print_status_debug(philo, RED, "died", status);
-// 	else if (status == EATING)
-// 		print_status_debug(philo, GREEN, "is eating", status);
-// 	else if (status == SLEEPING)
-// 		print_status_debug(philo, CYAN, "is sleeping", status);
-// 	else if (status == THINKING)
-// 		print_status_debug(philo, CYAN, "is thinking", status);
-// 	else if (status == GOT_FORK_1)
-// 		print_status_debug(philo, PURPLE, "has taken a fork", status);
-// 	else if (status == GOT_FORK_2)
-// 		print_status_debug(philo, PURPLE, "has taken a fork", status);
-// }
 
 static void	print_status(t_philo *philo, char *str)
 {
@@ -47,12 +26,6 @@ void	write_status(t_philo *philo, bool reaper_report, t_status status)
 		pthread_mutex_unlock(&philo->table->write_lock);
 		return ;
 	}
-	// if (DEBUG_FORMATTING == true)
-	// {
-	// 	write_status_debug(philo, status);
-	// 	pthread_mutex_unlock(&philo->table->write_lock);
-	// 	return ;
-	// }
 	if (status == DIED)
 		print_status(philo, "died");
 	else if (status == EATING)
